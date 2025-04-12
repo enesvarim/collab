@@ -1,0 +1,26 @@
+package com.collab.collab.dto;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class RegisterRequest {
+    
+    @NotBlank(message = "Ad alanı gereklidir")
+    private String firstName;
+    
+    @NotBlank(message = "Soyad alanı gereklidir")
+    private String lastName;
+    
+    @NotBlank(message = "Email is required")
+    @Email(message = "LÜTFEN GEÇERLİ BİR MAİL ADRESİ GİRİNİZ")
+    private String email;
+    
+    @NotBlank(message = "Password is required")
+    private String password;
+}
