@@ -5,7 +5,7 @@ WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 
-# Add Swagger profile to make sure Swagger is enabled in production
+# Swagger'ın üretim ortamında etkinleştirilmesini sağlamak için üretim profili ekledim
 RUN mvn clean package -Dmaven.test.skip=true -Dspring.profiles.active=prod
 
 FROM eclipse-temurin:21-jre
@@ -16,5 +16,5 @@ COPY --from=build /app/target/*.jar app.jar
 
 EXPOSE 8080
 
-# Use environment variables to enable Swagger in production
+# Swagger'ı üretim ortamında etkinleştirmek için çevre değişkenleri kullanıldı
 CMD ["java", "-jar", "app.jar", "--springdoc.swagger-ui.enabled=true", "--springdoc.api-docs.enabled=true"]
